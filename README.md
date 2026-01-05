@@ -30,3 +30,14 @@ Cohesion - is a measure of the the degree of the relationships of the members wi
 ## 11. Abstract Component
 
 ## 12. Search Widget Component Implementation
+
+## 13. Search Suggestion Component Implementation
+
+## 14. Explicit Wait Using Lambda
+
+```
+@Override
+public boolean isDisplayed() {
+    return this.wait.until((driver) -> this.suggestions.size() > 5);
+}
+```
