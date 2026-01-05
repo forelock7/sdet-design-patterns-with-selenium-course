@@ -26,3 +26,7 @@ Cohesion - is a measure of the the degree of the relationships of the members wi
 - [**_https://github.com/vinsguru/selenium-design-patterns_**](https://github.com/vinsguru/selenium-design-patterns)
 
 ## 10. IDE - Setup
+
+## 11. Abstract Component
+
+## 12. Search Widget Component Implementation
