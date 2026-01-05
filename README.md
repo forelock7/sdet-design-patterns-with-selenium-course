@@ -41,3 +41,5 @@ public boolean isDisplayed() {
     return this.wait.until((driver) -> this.suggestions.size() > 5);
 }
 ```
+
+## 15. Refactoring
