@@ -45,3 +45,5 @@ public boolean isDisplayed() {
 ## 15. Refactoring
 
 ## 16. Navigation Bar Component Implementation
+
+## 17. Result Stat Component Implementation
