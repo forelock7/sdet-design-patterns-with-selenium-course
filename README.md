@@ -79,6 +79,7 @@ public class ResultStat extends AbstractComponent {
 ## 18. Google Main Page Implementation
 
 ```
+
 package com.udemy.seleniumdesign.srp;
 
 import org.openqa.selenium.WebDriver;
@@ -109,3 +110,5 @@ public class GoogleMainPage {
     }
 }
 ```
+
+## 19. Google Result Page Implementation
