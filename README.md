@@ -47,3 +47,65 @@ public boolean isDisplayed() {
 ## 16. Navigation Bar Component Implementation
 
 ## 17. Result Stat Component Implementation
+
+```
+package com.udemy.seleniumdesign.srp;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+
+public class ResultStat extends AbstractComponent {
+
+    @FindBy(id = "resultStats")
+    private WebElement stat;
+
+    public ResultStat(WebDriver driver) {
+        super(driver);
+    }
+
+    public String getStat() {
+        return this.stat.getText();
+    }
+
+    @Override
+    public boolean isDisplayed() {
+        return this.wait.until((d) -> this.stat.isDisplayed());
+    }
+
+}
+```
+
+## 18. Google Main Page Implementation
+
+```
+package com.udemy.seleniumdesign.srp;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
+
+public class GoogleMainPage {
+
+    private WebDriver driver;
+    private SearchWidget searchWidget;
+    private SearchSuggestion searchSuggestion;
+
+    public GoogleMainPage(final WebDriver driver) {
+        this.driver = driver;
+        this.searchWidget = PageFactory.initElements(driver, SearchWidget.class);
+        this.searchSuggestion = PageFactory.initElements(driver, SearchSuggestion.class);
+    }
+
+    public void goTo() {
+        this.driver.get("https://www.google.com");
+    }
+
+    public SearchWidget getSearchWidget() {
+        return searchWidget;
+    }
+
+    public SearchSuggestion getSearchSuggestion() {
+        return searchSuggestion;
+    }
+}
+```
