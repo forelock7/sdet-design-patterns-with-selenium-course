@@ -112,3 +112,5 @@ public class GoogleMainPage {
 ```
 
 ## 19. Google Result Page Implementation
+
+## 20. Base Test
