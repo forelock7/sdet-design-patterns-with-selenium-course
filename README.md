@@ -114,3 +114,23 @@ public class GoogleMainPage {
 ## 19. Google Result Page Implementation
 
 ## 20. Base Test
+
+```
+public class BaseTest {
+    private WebDriver driver;
+
+    @BeforeTest
+    public void setupDriver() {
+        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver");
+        this.driver = new ChromeDriver();
+    }
+
+    @AfterTest
+    public void quitDriver() {
+        Uninterruptibles.sleepUninterruptibly(3, TimeUnit.SECONDS);
+        this.driver.quit();
+    }
+}
+```
+
+## 21. Google Search Test - Part 1

@@ -10,7 +10,7 @@ import org.testng.annotations.BeforeTest;
 import com.google.common.util.concurrent.Uninterruptibles;
 
 public class BaseTest {
-    private WebDriver driver;
+    protected WebDriver driver;
 
     @BeforeTest
     public void setupDriver() {
