@@ -204,3 +204,7 @@ public class GoogleTest extends BaseTest {
         googleMainPage.goTo();
 ...
 ```
+
+### 26. Package Refactoring
+
+Create java packages for each page. Add components for certain pages and in 'common' package add common components.

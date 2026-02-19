@@ -1,8 +1,10 @@
-package com.udemy.seleniumdesign.srp;
+package com.udemy.seleniumdesign.srp.result;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+
+import com.udemy.seleniumdesign.srp.common.AbstractComponent;
 
 public class ResultStat extends AbstractComponent {
 

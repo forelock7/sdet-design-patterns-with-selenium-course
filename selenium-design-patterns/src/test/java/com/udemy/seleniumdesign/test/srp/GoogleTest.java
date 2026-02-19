@@ -5,8 +5,8 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import com.udemy.seleniumdesign.srp.GoogleMainPage;
-import com.udemy.seleniumdesign.srp.GoogleResultPage;
+import com.udemy.seleniumdesign.srp.main.GoogleMainPage;
+import com.udemy.seleniumdesign.srp.result.GoogleResultPage;
 import com.udemy.seleniumdesign.test.BaseTest;
 
 public class GoogleTest extends BaseTest {
