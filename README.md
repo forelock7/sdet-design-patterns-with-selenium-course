@@ -135,7 +135,7 @@ public class BaseTest {
 
 ## 21. Google Search Test - Part 1
 
-## 22. Google Search Test - Part 2
+### 22. Google Search Test - Part 2
 
 ```
 public class GoogleTest extends BaseTest {
@@ -173,4 +173,16 @@ public class GoogleTest extends BaseTest {
     }
 
 }
+```
+
+### 23. Few Corrections
+
+```
+    public void enter(String keyword) {
+        this.searchBox.clear();
+        for (char ch: keyword.toCharArray()) {
+            Uninterruptibles.sleepUninterruptibly(20, TimeUnit.MILLISECONDS);
+            this.searchBox.sendKeys(String.valueOf(ch));
+        }
+    }
 ```
