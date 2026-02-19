@@ -135,7 +135,7 @@ public class BaseTest {
 
 ## 21. Google Search Test - Part 1
 
-### 22. Google Search Test - Part 2
+## 22. Google Search Test - Part 2
 
 ```
 public class GoogleTest extends BaseTest {
@@ -175,7 +175,7 @@ public class GoogleTest extends BaseTest {
 }
 ```
 
-### 23. Few Corrections
+## 23. Few Corrections
 
 ```
     public void enter(String keyword) {
@@ -187,7 +187,7 @@ public class GoogleTest extends BaseTest {
     }
 ```
 
-### 24. Google Search Test Parameterize
+## 24. Google Search Test Parameterize
 
 ```
     @DataProvider
@@ -205,20 +205,28 @@ public class GoogleTest extends BaseTest {
 ...
 ```
 
-### 26. Package Refactoring
+## 26. Package Refactoring
 
 Create java packages for each page. Add components for certain pages and in 'common' package add common components.
 
-### 27. Cohesion
+## 27. Cohesion
 
 If want to add some element, we should do it in particular component/page which it belongs to.
 
-### 28. Project Structure
+## 28. Project Structure
 
 Tests (TestNG/Junit) -> Page Object -> Components (Page Fragments) -> Selenium -> Browser
 
 Use SRP (Single Respocibility Principle)
 
-### 29. Clarification For BDD
+## 29. Clarification For BDD
 
 **BDD** -> Tests (TestNG/Junit) -> Page Object -> Components (Page Fragments) -> Selenium -> Browser
+
+## 30. Single Responsibility Principle - Summary
+
+- KISS principle (Keep It Simple Stupid)
+- ~100 lines class
+- Class should have only one responsibility.
+- Create smaller / maintainable classes
+- SRP is an interface. All the design patterns are implementation of this SRP.
