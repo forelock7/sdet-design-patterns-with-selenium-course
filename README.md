@@ -208,3 +208,7 @@ public class GoogleTest extends BaseTest {
 ### 26. Package Refactoring
 
 Create java packages for each page. Add components for certain pages and in 'common' package add common components.
+
+### 27. Cohesion
+
+If want to add some element, we should do it in particular component/page which it belongs to.
