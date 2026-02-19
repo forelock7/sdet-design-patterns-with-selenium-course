@@ -186,3 +186,21 @@ public class GoogleTest extends BaseTest {
         }
     }
 ```
+
+### 24. Google Search Test Parameterize
+
+```
+    @DataProvider
+    public Object[][] getData() {
+        return new Object[][] {
+                {"selenium", 3},
+                {"DOCKER", 2}
+        };
+    }
+
+    @Test(dataProvider = "getData")
+    public void googleWorkflow(String keyword, int index) {
+
+        googleMainPage.goTo();
+...
+```
