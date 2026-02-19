@@ -218,3 +218,7 @@ If want to add some element, we should do it in particular component/page which 
 Tests (TestNG/Junit) -> Page Object -> Components (Page Fragments) -> Selenium -> Browser
 
 Use SRP (Single Respocibility Principle)
+
+### 29. Clarification For BDD
+
+**BDD** -> Tests (TestNG/Junit) -> Page Object -> Components (Page Fragments) -> Selenium -> Browser
