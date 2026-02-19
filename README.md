@@ -212,3 +212,9 @@ Create java packages for each page. Add components for certain pages and in 'com
 ### 27. Cohesion
 
 If want to add some element, we should do it in particular component/page which it belongs to.
+
+### 28. Project Structure
+
+Tests (TestNG/Junit) -> Page Object -> Components (Page Fragments) -> Selenium -> Browser
+
+Use SRP (Single Respocibility Principle)
