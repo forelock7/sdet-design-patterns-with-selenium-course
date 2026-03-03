@@ -2,15 +2,15 @@
 
 Link:
 
-## Section 1: Introduction
+# Section 1: Introduction
 
-## Section 2: Single Responsibility Principle
+# Section 2: Single Responsibility Principle
 
-### 5. Single Responsibility Principle - Introduction
+## 5. Single Responsibility Principle - Introduction
 
 Class should have only one resposibility / one reason to change
 
-### 6. [Optional] - Coupling & Cohesion
+## 6. [Optional] - Coupling & Cohesion
 
 Coupling - is a measure of the degree of the dependancies among classes / modules
 
@@ -230,3 +230,124 @@ Use SRP (Single Respocibility Principle)
 - Class should have only one responsibility.
 - Create smaller / maintainable classes
 - SRP is an interface. All the design patterns are implementation of this SRP.
+
+# Section 3: Factory Pattern
+
+## 31. Design Pattern - Introduction
+
+## 32. SRP vs Design Patterns
+
+Single Responcibility Principle vs Design Patterns
+
+SRP - Trat class like a person. Assign 1 task.
+
+Design Patterns - protocol / How 2 persons should talk
+
+## 33. Design Patterns Classification
+
+- **_Creational Pattern_** (Object creation mechanism)
+  - Factory
+- **_Behavioral Pattern_** (Object with algorithms/behaviors)
+  - Strategy
+  - Template Method
+  - Command
+  - Execute Around Method
+- **_Structural Pattern_** (how to assemble objects and classes into larger structures)
+  - Decorator
+  - Proxy
+
+## 34. Factory Introduction
+
+- Create a new Object without exposing the installation logic
+- Refer to the newly created object using its common interface
+
+## 35. Factory - Exercise
+
+Google Search Site:
+
+- English (www.google.com)
+- French (www.google.fr)
+- Arabic (www.google.com.sa)
+
+Steps:
+
+- Launch site
+- Enter the search keyword
+- Just land on the search result page
+
+## 36.Factory - Abstract Google Page
+
+## 37. Factory - Google English Page Implementation
+
+## 38. Factory - Google French Page Implementation
+
+## 39. Factory - Google Arabic Page Implementation
+
+## 40. Google Factory Implementation
+
+```
+import java.util.Map;
+import java.util.function.Function;
+
+import org.openqa.selenium.WebDriver;
+
+public class GoogleFactory {
+    private static final Function<WebDriver, GooglePage> ENG = driver -> new GoogleEnglish(driver);
+    private static final Function<WebDriver, GooglePage> FR = driver -> new GoogleFrench(driver);
+    private static final Function<WebDriver, GooglePage> SA = driver -> new GoogleArabic(driver);
+
+    private static final Map<String, Function<WebDriver, GooglePage>> LANGUAGE_MAP = Map.of(
+            "ENG", ENG,
+            "FR", FR,
+            "SA", SA
+    );
+
+    public static GooglePage getGooglePage(final WebDriver driver, final String language) {
+        return LANGUAGE_MAP.get(language).apply(driver);
+    }
+}
+```
+
+## 41. Google Search Test With Factory
+
+```
+public class GoogleSearchTest extends BaseTest {
+
+    private GooglePage googlePage;
+
+    @Test(dataProvider = "getData")
+    public void searchTest(String language, String keyword) {
+        this.googlePage = GoogleFactory.get(language, this.driver);
+        this.googlePage.launchSite();
+        this.googlePage.search(keyword);
+        int resultsCount = this.googlePage.getResultsCount();
+        System.out.println("Results count: " + resultsCount);
+    }
+
+    @DataProvider
+    public Object[][] getData() {
+        return new Object[][] {
+                {"ENG", "selenium"},
+                {"FR", "Patrones de diseño en Selenium"},
+                {"SA", "Modèles de conception Selenium"}
+        };
+    }
+}
+```
+
+## 42. Factory - Test Run Demo
+
+## 43. Accommodating New Requirements
+
+## 44. Additional Materials
+
+- [WebDriver Management using Factory Pattern](https://www.vinsguru.com/selenium-webdriver-design-patterns-in-test-automation-factory-pattern/)
+- [Factory Pattern using Java 8 Supplier](https://www.vinsguru.com/selenium-webdriver-factory-design-pattern-using-java-8-supplier/)
+
+## 45. Factory - Summary
+
+Usage in Test Automation:
+
+- Application Localization support (English, French);
+- Framework multiple browsers support (Chrome, Firefox);
+- Require one object from multiple options.
