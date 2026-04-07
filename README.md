@@ -351,3 +351,63 @@ Usage in Test Automation:
 - Application Localization support (English, French);
 - Framework multiple browsers support (Chrome, Firefox);
 - Require one object from multiple options.
+
+# Section 4: Strategy Pattern
+
+## 46. Strategy - Introduction
+
+Goal:
+
+- Define a family of algorithms/behaviours, encapsulate each one, and make them interchangeable.
+- Ex: BluRay player (DVD, BluRay)
+
+## 47. Strategy - Sample Application Walk-through
+
+Resoource: https://vins-udemy.s3.amazonaws.com/ds/strategy.html
+
+## 48. Strategy - Sample Application - Regular Design
+
+## 49. Strategy - Payment Screen Design
+
+## 50. Strategy - Payment Option Implementation
+
+## 51. Strategy - Payment Screen Components
+
+## 52. Strategy - Payment Screen Test - Part 1
+
+## 53. Strategy - Payment Screen Test - Part 2
+
+## 54. Strategy - Payment Screen Test - Run
+
+## 55. Strategy Pattern Explanation
+
+## 56. Factory vs Strategy
+
+- Factory is creational pattern (there is no object at the beggining)
+- Strategy is behavioral pattern (there is object at the beggining and we use different implementations inside that objects)
+
+## 57. Combining Factory and Strategy
+
+## 58. Additional Materials
+
+- https://blog.vinsguru.com/selenium-webdriver-design-patterns-in-test-automation-strategy-pattern/
+
+## 59. Strategy - Summary
+
+- Application provides multiple options to the user & based on the user selection, application executes the business rule slightly differently
+
+- Google Search Strategy
+  - Text
+  - Voice
+  - Image
+
+- Payment Options
+  - Credit Card
+  - Promocode
+  - Bank Account/Routing
+  - Ether Wallet
+
+- Shipping
+  - Immediate Door delivery
+  - 2 Day air shipping
+  - 5 Day ground shipping
