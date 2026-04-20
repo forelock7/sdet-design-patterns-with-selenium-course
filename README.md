@@ -411,3 +411,105 @@ Resoource: https://vins-udemy.s3.amazonaws.com/ds/strategy.html
   - Immediate Door delivery
   - 2 Day air shipping
   - 5 Day ground shipping
+
+# Section 5: Command Pattern
+
+## 61. Command - Introduction
+
+Goal:
+
+- Emcapsulate a request/command to be executed as an object, pass it to an Invoker. The invoker executes the command.
+- To achieve complete decoupling between Sender & Receiver
+
+## 62. Command - Sample Application Walk-through
+
+- https://vins-udemy.s3.amazonaws.com/ds/admin-template/admin-template.html
+
+## 63. Command - Sample Application - Regular Design
+
+## 64. Command - Notification Validator
+
+## 65. Command - Dismissal Alert Validator
+
+## 66. Command - Home Page Implementation
+
+## 67. Command - Get Element Validators Implementation
+
+```
+...
+    public List<ElementValidator> getElementValidators() {
+        return Arrays.asList(
+            // notification alerts
+            new NotificationValidator(infoBtn, infoAlert),
+            new NotificationValidator(successBtn, successAlert),
+            new NotificationValidator(warningBtn, warningAlert),
+            new NotificationValidator(dangerBtn, dangerAlert),
+            // dismissal alerts
+            new DismissalAlertValidator(dismissInfoAlert),
+            new DismissalAlertValidator(dismissSuccessAlert),
+            new DismissalAlertValidator(dismissWarningAlert),
+            new DismissalAlertValidator(dismissDangerAlert));
+    }
+```
+
+## 68. Command - Home Page Test
+
+```
+public class HomePageTest extends BaseTest {
+
+    private HomePage homePage;
+
+    @BeforeTest
+    public void setHomePage() {
+        this.homePage = new HomePage(this.driver);
+    }
+
+    @Test
+    public void validateHomePageElements() {
+        this.homePage.goTo();
+        this.homePage.getElementValidators()
+        .stream()
+        .parallel()
+        .map(ev -> ev.validate())
+        .forEach(b -> Assert.assertTrue(b));
+    }
+
+}
+```
+
+## 69. Small Correction
+
+## 70. Command - Running Test
+
+## 71. Element Validators With Data Provider
+
+```
+public class HomePageTest extends BaseTest {
+
+    private HomePage homePage;
+
+    @BeforeTest
+    public void setHomePage(){
+        this.homePage = new HomePage(driver);
+    }
+
+    @Test
+    public void goTo(){
+        this.homePage.goTo();
+    }
+
+    @Test(dataProvider = "getData", dependsOnMethods = "goTo")
+    public void homePageTest(ElementValidator elementValidator){
+        Assert.assertTrue(elementValidator.validate());
+    }
+
+    @DataProvider
+    public Object[] getData(){
+        return this.homePage.getElementValidators()
+                            .toArray();
+    }
+
+}
+```
+
+### 72. Command - Summary
