@@ -395,7 +395,6 @@ Resoource: https://vins-udemy.s3.amazonaws.com/ds/strategy.html
 ## 59. Strategy - Summary
 
 - Application provides multiple options to the user & based on the user selection, application executes the business rule slightly differently
-
 - Google Search Strategy
   - Text
   - Voice
@@ -512,4 +511,53 @@ public class HomePageTest extends BaseTest {
 }
 ```
 
-### 72. Command - Summary
+## 72. Command - Summary
+
+# Section 6: Template Method Pattern
+
+## 73. Template Method - Introduction
+
+Template Method is special case of Factory Pattern.
+
+Goal:
+
+- Pattern class has skeleton of an algorithm; child classes have to implement the steps.
+
+## 74 - 77 Template Method Page Object
+
+```
+public class EBayShopping extends ShoppingTemplate {
+
+    private WebDriver driver;
+    private WebDriverWait wait;
+    private String product;
+....
+```
+
+## 78. Template Method - Shopping Test Implementation
+
+```
+public class ShoppingTest extends BaseTest {
+
+    @Test(dataProvider = "getData")
+    public void shoppingTest(ShoppingTemplate shopping) {
+        shopping.shop();
+    }
+
+    @DataProvider
+    public Object[] getData() {
+        return new Object[] {
+            new AmazonShopping(driver, "samsung"),
+            new EBayShopping(driver, "samsung")
+        };
+    }
+}
+```
+
+## 81. Template Method - Multi Pages Workflow - Refactoring
+
+## 82. Template Method - Final Test Run
+
+## 83. Additional Materials
+
+[Hotel / Car reservation using Template Method Pattern](https://www.vinsguru.com/selenium-webdriver-design-patterns-in-test-automation-template-method-pattern/)
