@@ -561,3 +561,90 @@ public class ShoppingTest extends BaseTest {
 ## 83. Additional Materials
 
 [Hotel / Car reservation using Template Method Pattern](https://www.vinsguru.com/selenium-webdriver-design-patterns-in-test-automation-template-method-pattern/)
+
+# Section 7: Proxy Pattern
+
+## 84. Proxy - Introduction
+
+Goal:
+
+- Provide a placeholder object instead of actual object and restricted access.
+- Example: Office Internet
+
+Usage in test automation:
+
+- Test automation has to run on multiple environments and verify the business workflow.
+- Certain steps have to be restricted based on the environment / Controlled access.
+
+## 85. Proxy - Sample Application Walk-through
+
+Sourse: https://vins-udemy.s3.amazonaws.com/ds/strategy.html
+
+## 86. Proxy - Order Component Real - Implementation
+
+## 87. Proxy - Order Component Proxy - Implementation
+
+```
+public class OrderComponentProxy implements OrderComponent {
+    private static final List<String> EXCLUDED = Arrays.asList("PROD", "STAGING");
+    private OrderComponent orderComponent;
+
+    public OrderComponentProxy(WebDriver driver) {
+        String currentEnv = System.getProperty("env"); // DEV / QA / PROD / STAGING
+        if (!EXCLUDED.contains(currentEnv)) {
+            this.orderComponent = new OrderComponentReal(driver);
+        }
+    }
+
+    @Override
+    public String placeOrder() {
+        if (Objects.nonNull(this.orderComponent)) {
+            return orderComponent.placeOrder();
+        } else {
+            return "SKIPPED";
+        }
+    }
+}
+```
+
+## 88. Proxy - Page Object Design
+
+```
+public class PaymentScreen {
+    private WebDriver driver;
+    private UserInformation userInformation;
+    private OrderComponent orderComponent;
+    private PaymentOption paymentOption;
+
+    public PaymentScreen(WebDriver driver) {
+        this.driver = driver;
+        this.userInformation = PageFactory.initElements(driver, UserInformation.class);
+        this.orderComponent = PageFactory.initElements(driver, OrderComponentProxy.class);
+    }
+    ...
+```
+
+## 89. Proxy - Test Run
+
+```
+public class PaymentScreenTest extends BaseTest {
+
+    private PaymentScreen paymentScreen;
+
+    @BeforeClass
+    public void setPaymentScreen() {
+        System.setProperty("env", "QA");
+        // System.setProperty("env", "PROD");
+        this.paymentScreen = new PaymentScreen(this.driver);
+    }
+
+    @Test
+    public void testPaymentScreen(String paymentOption, Map<String, String> paymentDetails) {
+        .....
+```
+
+## 90. Additional Materials
+
+- [Running DB queries on the lower environment using Proxy pattern](https://blog.vinsguru.com/selenium-webdriver-design-patterns-in-test-automation-proxy-pattern/)
+
+## 91. Proxy - Summary
