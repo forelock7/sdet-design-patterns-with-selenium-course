@@ -648,3 +648,108 @@ public class PaymentScreenTest extends BaseTest {
 - [Running DB queries on the lower environment using Proxy pattern](https://blog.vinsguru.com/selenium-webdriver-design-patterns-in-test-automation-proxy-pattern/)
 
 ## 91. Proxy - Summary
+
+# Section 8: Execute Around Method Pattern
+
+## 92. Execute Around Method - Introduction
+
+Goal:
+
+- Provide certain actions to be executed before and after the method call
+  - Important steps to be done as part of any method call which normally people forget
+- Develop Use cases:
+  - DB connections
+  - File read/write
+  - Audit log
+
+Usage In Test Automation
+
+- Same as development
+- Frame Switch
+- Window Switch
+- Taking screenshots
+- Logging
+
+## 93. Execute Around Method - Sample Application Walk-through
+
+- https://vins-udemy.s3.amazonaws.com/ds/main.html
+
+## 94. Execute Around Method - Main Page Implementation
+
+```
+public class MainPage {
+    private final WebDriver driver;
+
+    @FindBy(id = "a")
+    private WebElement a;
+
+    @FindBy(id = "b")
+    private WebElement b;
+
+    @FindBy(id = "c")
+    private WebElement c;
+
+    private FrameA frameA;
+    private FrameB frameB;
+    private FrameC frameC;
+
+    public MainPage(WebDriver driver) {
+        this.driver = driver;
+        PageFactory.initElements(driver, this);
+        frameA = PageFactory.initElements(driver, FrameA.class);
+        frameB = PageFactory.initElements(driver, FrameB.class);
+        frameC = PageFactory.initElements(driver, FrameC.class);
+    }
+
+    public void goTo() {
+        driver.get("https://vins-udemy.s3.amazonaws.com/ds/main.html");
+    }
+}
+```
+
+## 95. Java 8 Consumer - Refresh
+
+```
+public class SampleConsumer {
+
+    public static void main(String[] args) {
+        test((d) -> System.out.println(d));
+    }
+
+    private static void test(Consumer<String> consumer) {
+        String s = "udemy";
+        consumer.accept(s);
+    }
+}
+```
+
+## 96. Execute Around Method - Main Page Problems With Frames
+
+## 97. Execute Around Method - Implementation & Demo
+
+```
+public class MainPage {
+    ...
+    public void onFrameA(Consumer<FrameA> consumer) {
+        driver.switchTo().frame(a);
+        consumer.accept(frameA);
+        driver.switchTo().defaultContent();
+    }
+    ...
+```
+
+```
+    ...
+    @Test
+    public void testFrames() {
+        mainPage.goTo();
+
+        this.mainPage.onFrameA(a -> {
+            a.setFirstName("Vins");
+            a.setLastName("Chouhan");
+            a.setAddress("India");
+            a.setMessage("Hello from Frame A");
+        });
+    }
+    ...
+```
