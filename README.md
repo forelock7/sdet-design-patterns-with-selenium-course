@@ -753,3 +753,93 @@ public class MainPage {
     }
     ...
 ```
+
+# Section 9: Decorator Pattern
+
+## 98. Decorator - Introduction
+
+Goal:
+
+- Add additional behaviour to an object dynamically
+
+## 99. Decorator - Sample Application Walk-through
+
+- https://vins-udemy.s3.amazonaws.com/ds/decorator.html
+
+## 100. Decorator - Page Object
+
+## 101. Decorators Implementation
+
+```
+public class Decorators {
+    private static void shouldDisplay(List<WebElement> elements) {
+        elements.forEach(element -> Assert.assertTrue(element.isDisplayed()));
+    }
+
+    private static void shouldNotDisplay(List<WebElement> elements) {
+        elements.forEach(element -> Assert.assertFalse(element.isDisplayed()));
+    }
+
+    // ingredients
+    private static final Consumer<DashboardPage> adminComponentPresent = (dp) -> shouldDisplay(dp.getAdminComponents());
+    private static final Consumer<DashboardPage> adminComponentNotPresent = (dp) -> shouldNotDisplay(dp.getAdminComponents());
+    private static final Consumer<DashboardPage> superAdminComponentPresent = (dp) -> shouldDisplay(dp.getSuperAdminComponents());
+    private static final Consumer<DashboardPage> superAdminComponentNotPresent = (dp) -> shouldNotDisplay(dp.getSuperAdminComponents());
+    private static final Consumer<DashboardPage> guestComponentPresent = (dp) -> shouldDisplay(dp.getGuestComponents());
+    private static final Consumer<DashboardPage> guestComponentNotPresent = (dp) -> shouldNotDisplay(dp.getGuestComponents());
+
+    // role selection
+    private static final Consumer<DashboardPage> adminSelection = (dp) -> dp.selectRole("admin");
+    private static final Consumer<DashboardPage> superAdminSelection = (dp) -> dp.selectRole("superadmin");
+    private static final Consumer<DashboardPage> guestSelection = (dp) -> dp.selectRole("guest");
+
+    // user role pages
+    public static final Consumer<DashboardPage> adminPage = adminSelection
+            .andThen(adminComponentPresent)
+            .andThen(superAdminComponentPresent)
+            .andThen(guestComponentPresent);
+    public static final Consumer<DashboardPage> superAdminPage = superAdminSelection
+            .andThen(adminComponentNotPresent)
+            .andThen(superAdminComponentPresent)
+            .andThen(guestComponentPresent);
+    public static final Consumer<DashboardPage> guestPage = guestSelection
+            .andThen(adminComponentNotPresent)
+            .andThen(superAdminComponentNotPresent)
+            .andThen(guestComponentPresent);
+}
+```
+
+## 102. Decorator - Test Run
+
+```
+public class DashboardPageTest extends BaseTest {
+    private DashboardPage dashboardPage;
+
+    @BeforeTest
+    public void setDashboardPage() {
+        dashboardPage = new DashboardPage(driver);
+    }
+
+    @Test(dataProvider = "getData")
+    public void roleTest(Consumer<DashboardPage> role) {
+        dashboardPage.goToDashboard();
+        role.accept(dashboardPage);
+
+    }
+
+    @DataProvider
+    public Object[][] getData() {
+        return new Object[][] {
+            { Decorators.adminPage },
+            { Decorators.superAdminPage },
+            { Decorators.guestPage }
+        };
+    }
+}
+```
+
+## 103. Decorator - Assignment
+
+- https://vins-udemy.s3.amazonaws.com/java/html/java8-payment-screen.html
+
+## 104. Decorator - Assignment Solution
