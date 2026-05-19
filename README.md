@@ -843,3 +843,11 @@ public class DashboardPageTest extends BaseTest {
 - https://vins-udemy.s3.amazonaws.com/java/html/java8-payment-screen.html
 
 ## 104. Decorator - Assignment Solution
+
+# Section 10: Whats Next
+
+## 105. Dependency Injection Pattern - Intro
+
+## 106. More Info On Dependency Injection
+
+- https://www.udemy.com/course/cucumber-with-spring-boot/?referralCode=244257853037530AC052
